@@ -1,6 +1,13 @@
 // Quotes Array Containing Objects with each quote and it's relevant information
 let quotes = [
   {
+    quote: "Change will not come if we wait for some other person or if we wait or some other time. We are the one's we've been waiting for. We are the change that we seek.",
+    source: "President Barack Obama",
+    citation: "Campaign Speech",
+    yeah: 2008,
+    tag: "Politics"
+  },
+  {
     quote: "Smoking cigars is like falling in love. First, you are attracted by its shape; you stay for its flavor, and you must always remember never, never to let the flame go out!",
     source: "Winston Churchill",
     citation: null,
@@ -43,10 +50,9 @@ let quotes = [
     tag: "Work Ethic"
   }
 ]
-
 console.log(quotes);
 
-// Colors Array holding each of the background colors for random colors
+// Colors Array holding each of the background colors for random colors.
 let colors = [
   "linear-gradient(to left top, #083475, #3840a2, #7145ca, #b33dea, #fb02ff)",
   "linear-gradient(to left top, #083475, #672d88, #b1007c, #e80053, #ff1102)",
@@ -54,16 +60,9 @@ let colors = [
   "linear-gradient(to left top, #083475, #27409a, #4d4abf, #7850e1, #a851ff)",
   "linear-gradient(to left top, #083475, #006eb2, #00a5b2, #00d676, #d1f700)"
 ]
-
 console.log(colors);
 
-/***
-  Create the `getRandomQuote` function to:
-   - Create a variable to store a random number 
-   - Cse the random number to `return` a random quote object from the `quotes` array.
-***/
-
-// Empty Arrays to push used quotes and colors into so that they never repeat back to back. 
+// Empty Arrays to push used quotes and colors into so that they never repeat back to back, used in the functions below. 
 let repeatQuotes = [];
 let repeatColors = [];
 
@@ -78,6 +77,7 @@ getRandomQuote = () => {
   return quoteSplice;
 };
 
+// Very similar function to the getRandomQuote function, only pushing into a different array (repeatColors)
 getRandomColor = () => {
   randomColor = Math.floor(Math.random() * colors.length);
   colorSplice = colors.splice(randomColor, 1)[0];
@@ -89,20 +89,7 @@ getRandomColor = () => {
   return colorSplice;
 };
 
-
-/***
-  Create the `printQuote` function to: 
-   - Call the `getRandomQuote` function and assign it to a variable.
-   - Create a variable for the HTML string and set it equal to an empty string.
-   - Use the HTML template in the instructions or the markup in the index.html file, AND 
-     the random quote vairable to build your HTML string.
-   - Add the quote and source section to the HTML string.
-   - Use an if statement to check for the citation property before adding it to the HTML string.
-   - Use an if statement to check for the year property before adding it to the HTML string.
-   - Don't forget to close that final `p` tag.
-   - Set the `innerHTML` of the `quote-box` div to the HTML string. 
-***/
-
+// Function that prints the new quote and backgroundImage color to the page on button click.
 printQuote = () => {
   let printText = getRandomQuote();
   let newColor = getRandomColor();
@@ -125,6 +112,8 @@ printQuote = () => {
   document.body.style.backgroundImage = newColor; 
 };
 
+// Timer that changes the quote and background color after 20 seconds. 
 window.setInterval(printQuote, 20000);
 
+// click event for the button to change the quote and background color
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
